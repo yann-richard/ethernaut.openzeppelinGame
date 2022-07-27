@@ -1,12 +1,4 @@
 # EthernautChallenges
-The following are the solutions to the Ethernaut levels. For a detailed walkthrough please have a look at the videos:
-https://www.youtube.com/channel/UCCk-bj8IXoWDLzu7Hjf3GLQ
-
-As mentioned in the Solidity documentation : *"When deploying contracts, you should use the latest released version of Solidity. This is because breaking changes as well as new features and bug fixes are introduced regularly."*
-
-
-
-All the comments I made are subject to my own interpretation of how things work. Please feel free to contact me if something is not clear to you or needs to be corrected.
 
 ## Solution:
 ### Level 1 Fallback:
