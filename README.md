@@ -32,7 +32,7 @@ was deprecated and is not allowed anymore in version 0.5.0.”* p. 110
 In this contract, the constructor syntax is deprecated and misspelled (fal1out written with the number 1 instead of 
 the letter l). Therefore, to claim ownership of this contract you just need to call the *fal1out* function.
 
-### Level 3 Token:
+### Level 3 CoinFlip:
 Solidity documentation release 0.8.0 :<br/>
 *“A blockchain is a globally shared, transactional database. This means that everyone can read entries in the database
 just by participating in the network”* p. 10<br/>
@@ -42,7 +42,7 @@ Using random numbers in smart contracts is quite tricky if you do not want miner
 Ethereum Yellow paper:<br/>
 *“Providing random numbers within a deterministic system is, naturally, an impossible task. However, we can approximate with pseudo-random numbers by utilising data which is generally unknowable at the time of transacting. Such data might include the block’s hash, the block’s timestamp and the block’s beneficiary address”.*
 
-In this case, the block number is knowable at the time of transacting. Thus, we can create a malicious contract (Level3_CoinFlipSolution.sol) that computes the right guess and use this value to call the *flip* function of the CoinFlip contract (before a new block gets mined). Therefore, we are able to guess the right outcome everytime.
+In this case, the block number is knowable at the time of transacting. Thus, we can create a malicious contract (Level3_III237HackCoinFlip.sol) that computes the right guess and use this value to call the *flip* function of the CoinFlip contract (before a new block gets mined). Therefore, we are able to guess the right outcome everytime.
 
 
 ### Level 4 Telephone:
@@ -54,7 +54,7 @@ In other words, *tx.origin* is the original address that sends a transaction whi
 
 ![tel_graph2](https://user-images.githubusercontent.com/61462365/76195000-a9109f80-61e7-11ea-81ab-585464e51b3d.png)
 
-To solve this level, we (the user) will call the function of a malicious contract (Level4_TelephoneSolution.sol) that will call the *changeOwner* function of the Telephone contract. Thus, for the Telephone contract: *tx.origin* (= user’s address)  *≠* *msg.sender* (= malicious contract’s address). This will allow us to pass the if statement and become the new owner of the contract. 
+To solve this level, we (the user) will call the function of a malicious contract (Level4_III237HackTelephone.sol) that will call the *changeOwner* function of the Telephone contract. Thus, for the Telephone contract: *tx.origin* (= user’s address)  *≠* *msg.sender* (= malicious contract’s address). This will allow us to pass the if statement and become the new owner of the contract. 
 
 
 
