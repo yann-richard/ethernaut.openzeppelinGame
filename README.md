@@ -2,7 +2,7 @@
 
 ## Solution:
 ### Level 1 Fallback:
-Solidity documentation release 0.6.4 :<br/>
+Solidity documentation release 0.8.0 :<br/>
 *"A contract can have at most one fallback function, declared using fallback () external [payable] (without the function keyword). This function cannot have arguments, cannot return anything and must have external visibility. It is executed on a call to the contract if none of the other functions match the given function signature, or if no data was supplied at all and there is no receive Ether function. The fallback function always receives data, but in order to also receive Ether it must be marked payable."* p. 99
 
 *"msg.value (uint): number of wei sent with the message"* p. 73
@@ -23,7 +23,7 @@ We will solve this challenge using the following command in the console (can be 
 *await contract.withdraw()*<br/>
 
 ### Level 2 Fallout:
-Solidity documentation release 0.6.4 :<br/>
+Solidity documentation release 0.8.0 :<br/>
 *"A constructor is an optional function declared with the constructor keyword which is executed upon contract 
 creation, and where you can run contract initialisation code."* p. 110 <br/>
 *“Prior to version 0.4.22, constructors were defined as functions with the same name as the contract. This syntax 
@@ -33,7 +33,7 @@ In this contract, the constructor syntax is deprecated and misspelled (fal1out w
 the letter l). Therefore, to claim ownership of this contract you just need to call the *fal1out* function.
 
 ### Level 3 Token:
-Solidity documentation release 0.6.4 :<br/>
+Solidity documentation release 0.8.0 :<br/>
 *“A blockchain is a globally shared, transactional database. This means that everyone can read entries in the database
 just by participating in the network”* p. 10<br/>
 *“Everything you use in a smart contract is publicly visible, even local variables and state variables marked private.
@@ -46,7 +46,7 @@ In this case, the block number is knowable at the time of transacting. Thus, we 
 
 
 ### Level 4 Telephone:
-Solidity documentation release 0.6.4 :<br/>
+Solidity documentation release 0.8.0 :<br/>
 *“msg.sender (address payable): sender of the message (current call)”* p. 73<br/>
 *“tx.origin (address payable): sender of the transaction (full call chain)”* p. 73 
 
