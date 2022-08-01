@@ -72,7 +72,6 @@ To solve this level we will perform an underflow by using the *transfer* functio
 
 
 Here are some useful links:
-* [Nicole Zhu's Walkthrough](https://hackernoon.com/ethernaut-lvl-0-walkthrough-abis-web3-and-how-to-abuse-them-d92a8842d71b)
 * [OpenZeppelin Forum](https://forum.openzeppelin.com/t/ethernaut-community-solutions/561)
 * [Solidity documentation](https://solidity.readthedocs.io/en/latest/)
 * [Ethereum Yellow Paper](https://ethereum.github.io/yellowpaper/paper.pdf)
