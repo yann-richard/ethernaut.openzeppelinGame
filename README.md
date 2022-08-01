@@ -86,12 +86,13 @@ the fact that the code at the target address is executed in the context of the c
 msg.value do not change their values. This means that a contract can dynamically load code from a different address 
 at runtime.  Storage, current address and balance still refer to the calling contract, only the code is taken from the 
 called address. This makes it possible to implement the “library” feature in Solidity:  Reusable library code that can be
-applied to a contract’s storage, e.g. in order to implement a complex data structure”* p. 13<br/>
+applied to a contract’s storage, e.g. in order to implement a complex data structure”* <br/>
 *“The first four bytes of the call data for a function call specifies the function to be called. It is the first (left, high-order in big-endian) four bytes of the Keccak-256 (SHA-3) hash of the signature of the function. The signature is defined as 
-the canonical expression of the basic prototype without data location specifier”* p. 179  <br/>
+the canonical expression of the basic prototype without data location specifier”*   <br/>
 *“Any interaction with another contract imposes a potential danger, especially if the source code of the contract  
-is not known in advance.”* p. 78<br/>
+is not known in advance.”* <br/>
 
+example of explanation :<br/>
 In other words, by using a delegatecall you let another contract’s code run inside the calling contract. This code is 
 executed using the calling contract state (i.e. data, variables) and can potentially modify it. It’s a double-edged sword. 
 Here is an example:
