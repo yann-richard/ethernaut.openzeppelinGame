@@ -15,7 +15,7 @@ We will solve this challenge using the following command in the console (can be 
 
 ```
 await contract.owner()
-player*<br/>
+player
 await contract.contributions(player)
 await contract.contribute({value:1})
 await contract.contributions(player)
@@ -98,11 +98,7 @@ Here is an example:
 
 ![Explanation2](https://user-images.githubusercontent.com/61462365/76687833-f77acf80-6627-11ea-9839-da28720ee233.png)
 
-To solve this level we will use the pwn function in the context of the Delegation contract by using a delegatecall
-(located in its fallback function). In order to precisely call the pwn function, we need to pass its function signature 
-(i.e. first four bytes of the Keccak-256 hash). 
-
-or Since msg.sender, msg.data, msg.value are all persisted when executing a DelegateCall, all you had to do was pass malicious msg.data, i.e. the encoded payload of the pwn() function to get the property of the Delegationcontract you can directly in console do this :
+To solve this level DelegateCall means you take the implementation logic of the function in the contract you're making this call to but using the storage of the calling contract. Since msg.sender, msg.data, msg.value are all preserved when performing a DelegateCall, you just needed to pass in a malicious msg.data i.e. the encoded payload of `pwn()` function to gain ownership of the `Delegation` contract. you can directly in console do this :
 
 ```
 let payload = web3.eth.abi.encodeFunctionSignature({
