@@ -123,7 +123,7 @@ Authenticate and do conditional checks on functions that invoke delegatecalls. <
 
 
 ### Level 7 Force:
-Solidity documentation release 0.6.4 :<br/>
+Solidity documentation release 0.8.0 :<br/>
 *“A contract without a receive Ether function can receive Ether as a recipient of a coinbase transaction (aka miner 
 block reward) or as a destination of a selfdestruct. A contract cannot react to such Ether transfers and thus also 
 cannot reject them. This is a design choice of the EVM and Solidity cannot work around it.”* <br/>
