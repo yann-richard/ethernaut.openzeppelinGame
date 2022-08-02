@@ -122,6 +122,15 @@ ii) do not care about gas control. When inheriting from a library intending to a
 Authenticate and do conditional checks on functions that invoke delegatecalls. <br/>
 
 
+### Level 7 Force:
+Solidity documentation release 0.6.4 :<br/>
+*“A contract without a receive Ether function can receive Ether as a recipient of a coinbase transaction (aka miner 
+block reward) or as a destination of a selfdestruct. A contract cannot react to such Ether transfers and thus also 
+cannot reject them. This is a design choice of the EVM and Solidity cannot work around it.”* <br/>
+
+To solve this level we will deploy a malicious contract (Level7_III237HackForce.sol) and send some fund to it.Even if a contract doesn't implement a receive / fallback or any payable functions to handle incoming ETH, it is still possible to forcefully send ETH to a contract through the use of `selfdestruct`. If you're deploying this malicious contract through remix, don't forget to specify value before deploying the Attack to Force contract or the `selfdestruct` won't be able to send any ETH over as there are no ETH in the contract to be sent over! Then, we will designate the Force contract as owner of the malicious contract and destroy our malicious contract. Thus, sending fund to the Force 
+contract that cannot be rejected.
+
 Here are some useful links:
 * [OpenZeppelin Forum](https://forum.openzeppelin.com/t/ethernaut-community-solutions/561)
 * [Solidity documentation](https://solidity.readthedocs.io/en/latest/)
