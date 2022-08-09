@@ -131,6 +131,30 @@ cannot reject them. This is a design choice of the EVM and Solidity cannot work 
 To solve this level we will deploy a malicious contract (Level7_III237HackForce.sol) and send some fund to it.Even if a contract doesn't implement a receive / fallback or any payable functions to handle incoming ETH, it is still possible to forcefully send ETH to a contract through the use of `selfdestruct`. If you're deploying this malicious contract through remix, don't forget to specify value before deploying the Attack to Force contract or the `selfdestruct` won't be able to send any ETH over as there are no ETH in the contract to be sent over! Then, we will designate the Force contract as owner of the malicious contract and destroy our malicious contract. Thus, sending fund to the Force 
 contract that cannot be rejected.
 
+Solidity documentation release 0.8.0 :<br/>
+*“Everything that is inside a contract is visible to all observers external to the blockchain. Making something private
+only prevents other contracts from reading or modifying the information, but it will still be visible to the whole world 
+outside of the blockchain.”* <br/>
+*“Even if a contract is removed by “selfdestruct”, it is still part of the history of the blockchain and probably retained 
+by most Ethereum nodes. So, using “selfdestruct” is not the same as deleting data from a hard disk.”* <br/>
+*“Statically-sized variables (everything except mapping and dynamically-sized array types) are laid out contiguously in
+storage starting from position 0. Multiple, contiguous items that need less than 32 bytes are packed into a single 
+storage slot if possible [...] ”.* <br/>
+
+Everything you use in a smart contract is publicly visible. Moreover, keep in mind that a blockchain is an **append-only
+ledger**. If you change the state of your contract or even destroy it, it will still be part of the history of the blockchain. 
+Thus, everyone can have access to it. <br/>
+
+
+Your private variables are private if you try to access it the normal way e.g. via another contract but the problem is that everything on the blockchain is visible so even if the variable's visibility is set to private, you can still access it based on its index in the smart contract. Learn more about this [here](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html).
+To solve this level do this : 
+
+```
+const password = await web3.eth.getStorageAt(instance, 1); //access the state and get the value stored at slot 1 (slot 0 contains the bool 
+//value)
+await contract.unlock(password); //unlock the vault by using the function unlock with the value of password as argument
+```
+
 Here are some useful links:
 * [OpenZeppelin Forum](https://forum.openzeppelin.com/t/ethernaut-community-solutions/561)
 * [Solidity documentation](https://solidity.readthedocs.io/en/latest/)
