@@ -131,6 +131,8 @@ cannot reject them. This is a design choice of the EVM and Solidity cannot work 
 To solve this level we will deploy a malicious contract (Level7_III237HackForce.sol) and send some fund to it.Even if a contract doesn't implement a receive / fallback or any payable functions to handle incoming ETH, it is still possible to forcefully send ETH to a contract through the use of `selfdestruct`. If you're deploying this malicious contract through remix, don't forget to specify value before deploying the Attack to Force contract or the `selfdestruct` won't be able to send any ETH over as there are no ETH in the contract to be sent over! Then, we will designate the Force contract as owner of the malicious contract and destroy our malicious contract. Thus, sending fund to the Force 
 contract that cannot be rejected.
 
+## 8. Vault
+
 Solidity documentation release 0.8.0 :<br/>
 *“Everything that is inside a contract is visible to all observers external to the blockchain. Making something private
 only prevents other contracts from reading or modifying the information, but it will still be visible to the whole world 
@@ -153,6 +155,17 @@ To solve this level do this :
 const password = await web3.eth.getStorageAt(instance, 1); //access the state and get the value stored at slot 1 (slot 0 contains the bool 
 //value)
 await contract.unlock(password); //unlock the vault by using the function unlock with the value of password as argument
+```
+
+
+
+## 9. King
+This is a classic example of DDoS with unexpected revert when the logic of the victim's contract involve sending funds to the previous "lead", which in this case is the king. A malicious user would create a smart contract with either:
+
+- a `fallback` / `receive` function that does `revert()`
+- or the absence of a `fallback` / `receive` function
+
+Once the malicious user uses this smart contract to take over the "king" position, all funds in the victim's contract is effectively stuck in there because nobody can take over as the new "king" no matter how much ether they use because the fallback function in the victim's contract will always fail when it tries to do `king.transfer(msg.value);`
 ```
 
 Here are some useful links:
