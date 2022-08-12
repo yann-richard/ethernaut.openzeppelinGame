@@ -168,6 +168,32 @@ This is a classic example of DDoS with unexpected revert when the logic of the v
 Once the malicious user uses this smart contract to take over the "king" position, all funds in the victim's contract is effectively stuck in there because nobody can take over as the new "king" no matter how much ether they use because the fallback function in the victim's contract will always fail when it tries to do `king.transfer(msg.value);`
 ```
 
+
+### Level 10 Re-entrancy:<br/>
+Solidity documentation :<br/>
+*“You should avoid using .call() whenever possible when executing another contract function as it bypasses type 
+checking, function existence check, and argument packing.”* <br/>
+*“Any interaction with another contract imposes a potential danger, especially if the source code of the contract  
+is not known in advance. The current contract hands over control to the called contract and that may potentially do 
+just about anything.”* <br/>
+<br/>
+In order to solve this level we will create a malicious contract with a fallback function that calls back the withdraw 
+function. Thus, this will prevent the withdraw function completion until all the contract funds are drained (as shown 
+below). Before calling the withdraw function we need to increase the balance of our malicious contract (by using 
+the donate function of the Reentrance contract).
+
+![reentrance](https://user-images.githubusercontent.com/61462365/77301685-6921e000-6cf0-11ea-90be-f94aac620b29.png)
+
+### Level 11 Elevator:<br/>
+Solidity documentation :<br/>
+*“Interfaces are similar to abstract contracts, but they cannot have any functions implemented.”*<br/>
+*“All functions declared in interfaces are implicitly virtual, which means that they can be overridden. This does
+not automatically mean that an overriding function can be overridden again  - this is only possible if the 
+overriding function is marked virtual.”* <br/>
+
+To solve this level we will create a malicious contract that will implement the *isLastFloor* function. Then we 
+will invoke the *goTo* function from the malicious contract. This will ensure that it’s the *isLastFloor* function from the malicious contract that will be used. The *isLastFloor* function needs to return false the first time it’s called (to pass the if statement) and true the second time it’s called (to change the boolean top value to true).
+
 Here are some useful links:
 * [OpenZeppelin Forum](https://forum.openzeppelin.com/t/ethernaut-community-solutions/561)
 * [Solidity documentation](https://solidity.readthedocs.io/en/latest/)
