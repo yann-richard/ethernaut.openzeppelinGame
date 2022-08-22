@@ -194,6 +194,34 @@ overriding function is marked virtual.”* <br/>
 To solve this level we will create a malicious contract that will implement the *isLastFloor* function. Then we 
 will invoke the *goTo* function from the malicious contract. This will ensure that it’s the *isLastFloor* function from the malicious contract that will be used. The *isLastFloor* function needs to return false the first time it’s called (to pass the if statement) and true the second time it’s called (to change the boolean top value to true).
 
+
+
+
+## 12. Privacy
+This level is very similar to that of the level 8 Vault. In order to unlock the function, you need to be able to retrieve the value stored at `data[2]`. To do that, we need to determine the position of where `data[2]` is stored on the contract.
+
+I used to link the solidity docs but the path keeps changing so just google "storage layout solidity docs" and find the latest one to read.
+
+From the docs, we can tell that `data[2]` is stored at index 5. Index 0 contains the value for `locked`, index 1 contains the value for `ID`, index 2 contains the values for `flattening`, `denomination` and `awkwardness` (they're packed together to fit into a single bytes32 slot), index 3 contains the value for `data[0]` and finally, index 4 contains the value for `data[1]`.
+
+Astute readers will also notice that the password is actually casted to bytes16! So you'd need to know what gets truncated when you go from bytes32 to byets16. You can learn about what gets truncated during type casting [here](https://www.tutorialspoint.com/solidity/solidity_conversions.htm).
+
+```
+var data = await web3.eth.getStorageAt(instance, 5);
+var key = '0x' + data.slice(2, 34);
+await contract.unlock(key);
+```
+
+```
+Key Security Takeaways
+1. In general, excessive slot usage wastes gas, especially if you declared structs that will reproduce many instances. Remember to optimize your storage to save gas!
+2. Save your variables to memory if you don’t need to persist smart contract state. SSTORE <> SLOAD are very gas intensive opcodes.
+3. All storage is publicly visible on the blockchain, even your privatevariables!
+4. Never store passwords and private keys without hashing them first
+
+```
+
+
 Here are some useful links:
 * [OpenZeppelin Forum](https://forum.openzeppelin.com/t/ethernaut-community-solutions/561)
 * [Solidity documentation](https://solidity.readthedocs.io/en/latest/)
