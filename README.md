@@ -219,7 +219,7 @@ await contract.unlock(key);
 ```
 
 
-`Key Security Takeaways`
+## Key Security Takeaways
 1. In general, excessive slot usage wastes gas, especially if you declared structs that will reproduce many instances. Remember to optimize your storage to save gas!
 2. Save your variables to memory if you don’t need to persist smart contract state. SSTORE <> SLOAD are very gas intensive opcodes.
 3. All storage is publicly visible on the blockchain, even your privatevariables!
@@ -229,9 +229,9 @@ await contract.unlock(key);
 
 
 ```
-`My Smartcontract security cheklist :` 
+## My Smartcontract cheklist : 
 
-   Security check:
+   `Security check:`
 1. Check source code for security flaws and potential vulnerabilities.
 2. Check if the contract is protected against DDoS attacks and other network attacks.
 3. Check if the contract is protected against denial of service (DoS) attacks.
@@ -241,7 +241,7 @@ await contract.unlock(key);
 7. Check if the contract is protected against attacks by targeted denial of service (TDoS).
 8. Check if the contract is protected against the exploitation of known software flaws.
 
-  Functionality testing:
+  `Functionality testing:`
 
 1.  Test all features of the smart contract to verify that they work properly and meet specifications.
 2. Performance testing:
