@@ -251,14 +251,15 @@ await contract.unlock(key);
 6. Behavioral test:
 7. Test the behavior of the smart contract to verify that it behaves as expected, even in the event of an error or unexpected exception.
 
-```
 
 
 
-Here are some useful links:
-* [OpenZeppelin Forum](https://forum.openzeppelin.com/t/ethernaut-community-solutions/561)
+
+## Here are some useful links:
+
+* [Mastering Ethereum](https://github.com/ethereumbook/ethereumbook)
 * [Solidity documentation](https://solidity.readthedocs.io/en/latest/)
 * [Ethereum Yellow Paper](https://ethereum.github.io/yellowpaper/paper.pdf)
-* [Mastering Ethereum](https://github.com/ethereumbook/ethereumbook)
+* [OpenZeppelin Forum](https://forum.openzeppelin.com/t/ethernaut-community-solutions/561)
 
 
